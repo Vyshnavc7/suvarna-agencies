@@ -497,10 +497,14 @@ p.sbmincart-empty-text {
 }
 
 span.money {
-	font-size: 1em;
+	font-size: 1.2em;
 	color: #ff4e00;
 	font-weight: 700;
-	letter-spacing: 1px;
+	letter-spacing: 2px;
+}
+.rupecolor{
+	color: #6e00ff;
+    font-size: 20px;
 }
 
 .inner-men-cart-pro {
