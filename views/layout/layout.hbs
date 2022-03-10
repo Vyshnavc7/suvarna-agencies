@@ -32,12 +32,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
+
 	{{#if admin}}
-	{{>admin-header}}
+		{{>admin-header}}
 	{{else}}
-	{{>user-header}}
+		{{>user-header}}
 	{{/if}}
+
 	{{{body}}}
+
+	{{#if admin}}
+	
+	{{else}}
+		{{>user-footer}}
+	{{/if}}
 
 
 	<!--//banner-sec-->
