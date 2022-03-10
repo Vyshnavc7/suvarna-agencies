@@ -8,4 +8,7 @@ router.get('/', function(req, res, next) {
 router.get('/add-category', function(req, res, next) {
   res.render('admin/add-category',{admin:true});
 }); 
+router.get('/add-product', function(req, res, next) {
+  res.render('admin/add-product',{admin:true});
+}); 
 module.exports = router;
