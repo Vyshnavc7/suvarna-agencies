@@ -26,4 +26,6 @@ router.get('/add-category', function(req, res, next) {
 router.get('/view-category', function(req, res, next) {
   res.render('admin/view-category',{admin:true});
 }); 
+
+
 module.exports = router;
