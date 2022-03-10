@@ -3,6 +3,6 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('error');
+  res.render('admin/all-products');
 });  
 module.exports = router;
