@@ -36,7 +36,10 @@ router.post('/add-product',(req,res)=>{
   console.log(req.body);
   console.log(req.files)
   
-  productHelpers.addProduct(req.body)
+  // calling addproduct function from producthelpers to insert to database
+  productHelpers.addProduct(req.body,(result)=>{
+    res.render("admin/add-product")
+  })
 
 });
 
