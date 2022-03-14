@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('admin/dashboard',{admin:true});
 });  
+// rending or traversing to another page
 router.get('/add-category', function(req, res, next) {
   res.render('admin/add-category',{admin:true});
 }); 
@@ -26,6 +27,11 @@ router.get('/add-category', function(req, res, next) {
 router.get('/view-category', function(req, res, next) {
   res.render('admin/view-category',{admin:true});
 }); 
+
+router.post('/add-product',(req,res)=>{
+  console.log(req.body);
+  
+});
 
 
 module.exports = router;
