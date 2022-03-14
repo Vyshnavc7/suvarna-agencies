@@ -23,14 +23,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
-// for database
+// for database connection
 db.connect((err)=>{
   if(err)
   console.log(" connection error"+err);
   else
     console.log("DATABASE CONNECTED");
 })
-
+// for gettting iamge file in server
+app.get('/',(req,res)=>{
+  res.sendFile(__dirname+'../add-Product')
+})
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
