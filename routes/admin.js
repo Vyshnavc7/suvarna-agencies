@@ -34,11 +34,20 @@ router.get('/view-category', function(req, res, next) {
 router.post('/add-product',(req,res)=>{
   // listing form data in server
   console.log(req.body);
-  console.log(req.files)
+  console.log(req.files.image);
   
   // calling addproduct function from producthelpers to insert to database
   productHelpers.addProduct(req.body,(result)=>{
-    res.render("admin/add-product")
+    let image=req.files.image
+    image.mv('./public/product-images/1.jpg',(err,done)=>{
+      if(!err){
+        res.render("admin/add-product")
+      }else{
+        console.log(err);
+      }
+    })
+    
+    
   })
 
 });
