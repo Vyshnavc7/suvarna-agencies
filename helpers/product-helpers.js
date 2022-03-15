@@ -1,4 +1,6 @@
 var db=require('../config/connection')
+var collection=require('../config/collections');
+const async = require('hbs/lib/async');
 module.exports={
     addProduct:(product,callback)=>{
        
@@ -9,7 +11,16 @@ module.exports={
             callback(data)
             
         })
-    }
+     }, 
+     //to list the products in db
+    listProducts:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let products=await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+            resolve(products)
+            console.log(products);
+        })
+        
+    },
 
 
 

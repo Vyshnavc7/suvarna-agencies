@@ -5,6 +5,7 @@ var router = express.Router();
 var product=require('../helpers/product-helpers')
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  
   res.render('admin/dashboard',{admin:true});
 });  
 // rending or traversing to another page
@@ -21,7 +22,11 @@ router.get('/dashboard', function(req, res, next) {
   res.render('admin/dashboard',{admin:true});
 }); 
 router.get('/all-products', function(req, res, next) {
-  res.render('admin/all-products',{admin:true});
+  // used for list product and calling
+  productHelpers.listProducts().then((products)=>{
+    res.render('admin/all-products',{admin:true,products});
+  })
+ 
 }); 
 router.get('/add-category', function(req, res, next) {
   res.render('admin/add-category',{admin:true});
@@ -52,10 +57,8 @@ router.post('/add-product',(req,res)=>{
         console.log(err);
       }
     })
-    
-    
   })
-
+  
 });
 
 
