@@ -21,7 +21,17 @@ module.exports={
         })
         
     },
-
+    
+    // to insert category in db
+    addCategory:(category,callback)=>{
+       
+        // to insert datas into database in mongo
+        db.get().collection('category').insertOne(category).then((data)=>{
+            console.log('Data inserted');
+            callback(data)
+            
+        })
+     }, 
 
 
 

@@ -30,7 +30,7 @@ db.connect((err)=>{
   else
     console.log("DATABASE CONNECTED");
 })
-// for gettting iamge file in server
+// for gettting image file in server
 app.get('/',(req,res)=>{
   res.sendFile(__dirname+'../add-Product')
 })

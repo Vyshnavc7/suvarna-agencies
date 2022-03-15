@@ -5,7 +5,6 @@ var router = express.Router();
 var product=require('../helpers/product-helpers')
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  
   res.render('admin/dashboard',{admin:true});
 });  
 // rending or traversing to another page
@@ -27,9 +26,6 @@ router.get('/all-products', function(req, res, next) {
     res.render('admin/all-products',{admin:true,products});
   })
  
-}); 
-router.get('/add-category', function(req, res, next) {
-  res.render('admin/add-category',{admin:true});
 }); 
 router.get('/view-category', function(req, res, next) {
   res.render('admin/view-category',{admin:true});
@@ -59,7 +55,18 @@ router.post('/add-product',(req,res)=>{
     })
   })
   
+  
 });
+
+// calling add catergory from product helpers to insert data
+router.post('/add-category',(req,res)=>{
+  productHelpers.addCategory(req.body,(result)=>{
+      res.render("admin/add-category",{admin:true})
+  })
+})
+
+
+
 
 
 module.exports = router;
