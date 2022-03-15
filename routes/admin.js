@@ -32,19 +32,22 @@ router.get('/view-category', function(req, res, next) {
 
 // adding and calling addproduct function in database
 router.post('/add-product',(req,res)=>{
+
   // listing form data in server
-  console.log(req.body);
-  console.log(req.files.image);
+  // console.log(req.body);
+  // console.log(req.files.image);
   
   // calling addproduct function from producthelpers to insert to database
   productHelpers.addProduct(req.body,(id)=>{
     let image=req.files.image
     let name=req.files.image.name
     let id1=req.body._id
-    console.log('image id in folder is :'+id1);
+    
     image.mv('./public/product-images/'+id1+'.jpg',(err,done)=>{
       if(!err){
-        res.render("admin/add-product")
+        console.log('Image inserted');
+        console.log('image id in folder is :'+id1);
+        res.render("admin/add-product",{admin:true})
       }else{
         console.log(err);
       }
