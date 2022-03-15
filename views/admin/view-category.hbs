@@ -14,18 +14,12 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each categorys}}
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                   
-                   
+                    <td>{{this.name}}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    
-                    
-                </tr>
+                {{/each}}
                 
             </tbody>
         </table>

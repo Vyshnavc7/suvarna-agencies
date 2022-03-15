@@ -28,7 +28,9 @@ router.get('/all-products', function(req, res, next) {
  
 }); 
 router.get('/view-category', function(req, res, next) {
-  res.render('admin/view-category',{admin:true});
+  productHelpers.viewCategory().then((categorys)=>{
+    res.render('admin/view-category',{admin:true,categorys});
+  })
 }); 
 
 // adding and calling addproduct function in database

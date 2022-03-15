@@ -21,7 +21,7 @@ module.exports={
         })
         
     },
-    
+
     // to insert category in db
     addCategory:(category,callback)=>{
        
@@ -32,6 +32,15 @@ module.exports={
             
         })
      }, 
+
+     viewCategory:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let categorys=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+            resolve(categorys)
+            console.log(categorys);
+        })
+        
+    },
 
 
 
