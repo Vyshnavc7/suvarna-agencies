@@ -42,6 +42,13 @@ module.exports={
         
     },
 
+    getProductCount:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).count().then((count)=>{
+                resolve(count)
+            })
+        })
+    },
 
 
 }
