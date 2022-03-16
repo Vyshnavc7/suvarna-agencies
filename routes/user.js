@@ -14,4 +14,11 @@ router.get('/about', function(req, res, next) {
 router.get('/contact', function(req, res, next) {
   res.render('user/contact');
 }); 
+
+router.get('/signup', function(req, res, next) {
+  res.render('user/signup');
+}); 
+
+
+
 module.exports = router;

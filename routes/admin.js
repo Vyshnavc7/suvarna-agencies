@@ -78,7 +78,14 @@ router.get('/dashboard',async(req,res)=>{
   let categorycount=await productHelpers.getCategoryCount()
   // res.render('admin/dashboard',{admin,sellercount,usercount,bookingcount,vehiclescount})
   res.render('admin/dashboard',{productcount,categorycount})
-})
+}),
+
+router.get('/dashboard', function(req,res, next) {
+  // used for list product and calling
+  productHelpers.getCategoryCount().then((count1)=>{
+    res.render('admin/dashboard',{admin:true,count1});
+  })
+}); 
 
 
 
