@@ -2,26 +2,17 @@
 enctype is for file sharing to server --}}
 <section>
     <div class="container mt-3">
+        <a class="pull-right btn btn-primary " href="/admin/all-products">Back</a>
         <h2>Add product</h2>
         <form action="/admin/add-product" enctype="multipart/form-data" method="post">
             <div class="form-group mt-3">
                 <label for="email">Product Name:</label>
                 <input type="text" class="form-control" id="email" placeholder="Enter Name of the product" name="name">
             </div>
-            {{!-- <h5>Choose category</h5>
-            <div class="row ml-1 mt-1">
-                <div class="dropdown">
-                    <button type="button" class="btn btn-body dropdown-toggle" data-toggle="dropdown">
-                        Category
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Link 1</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
-                    </div>
-                </div>
-            </div> --}}
-
+            <div class="form-group mt-2">
+                <label for="pwd">Category:</label>
+                <input type="text" class="form-control" id="category" placeholder="Enter Category" name="cat">
+            </div>
 
             <div class="form-group mt-2">
                 <label for="pwd">Price:</label>

@@ -7,7 +7,7 @@ var product=require('../helpers/product-helpers')
 router.get('/', function(req, res, next) {
   res.render('admin/dashboard',{admin:true});
 });  
-// rending or traversing to another page
+// rending or traversing to another page of admin
 router.get('/add-category', function(req, res, next) {
   res.render('admin/add-category',{admin:true});
 }); 
@@ -30,6 +30,7 @@ router.get('/all-products', function(req, res, next) {
 router.get('/view-category', function(req, res, next) {
   productHelpers.viewCategory().then((categorys)=>{
     res.render('admin/view-category',{admin:true,categorys});
+    
   })
 }); 
 
@@ -65,6 +66,18 @@ router.post('/add-category',(req,res)=>{
   productHelpers.addCategory(req.body,(result)=>{
       res.render("admin/add-category",{admin:true})
   })
+})
+
+router.get('/dashboard',async(req,res)=>{
+  // let admin=req.session.admin
+  // let sellercount=await adminHelpers.getSellersCount()
+  // let usercount=await adminHelpers.getUserCount()
+  // let bookingcount=await adminHelpers.getBookingsCount()
+  // let vehiclescount=await adminHelpers.getVehiclesCount()
+  let productcount=await productHelpers.getProductCount()
+  let categorycount=await productHelpers.getCategoryCount()
+  // res.render('admin/dashboard',{admin,sellercount,usercount,bookingcount,vehiclescount})
+  res.render('admin/dashboard',{productcount,categorycount})
 })
 
 

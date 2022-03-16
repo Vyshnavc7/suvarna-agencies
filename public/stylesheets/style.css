@@ -1317,7 +1317,7 @@ input#datepicker {
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
-    moz-background-size: cover;
+    -moz-background-origin: cover;
     min-height: 180px;
 }
 
@@ -1759,7 +1759,7 @@ ul.links li a:hover {
         -webkit-background-size: cover;
         -o-background-size: cover;
         -ms-background-size: cover;
-        moz-background-size: cover;
+        -moz-background-origin: cover;
         min-height: 159px;
     }
     ul.short {

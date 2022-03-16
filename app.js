@@ -16,7 +16,7 @@ var db=require('./config/connection')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine('hbs',hbs.engine({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',userDir:__dirname+'/views/user/',partialDir:__dirname+'/views/partials/'}))
+app.engine('hbs',hbs.engine({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialDir:__dirname+'/views/partials/'}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,7 +31,7 @@ db.connect((err)=>{
     console.log("DATABASE CONNECTED");
 })
 // for gettting image file in server
-app.get('/',(req,res)=>{
+app.get('/add-product',(req,res)=>{
   res.sendFile(__dirname+'../add-Product')
 })
 
