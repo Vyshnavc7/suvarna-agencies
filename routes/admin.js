@@ -1,8 +1,9 @@
 var express = require('express');
 const productHelpers = require('../helpers/product-helpers');
+const userHelpers = require('../helpers/user-helpers');
 var router = express.Router();
 // to call addproduct function, then require this module here
-var product=require('../helpers/product-helpers')
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('admin/dashboard',{admin:true});
@@ -84,6 +85,13 @@ router.get('/dashboard', function(req,res, next) {
   // used for list product and calling
   productHelpers.getCategoryCount().then((count1)=>{
     res.render('admin/dashboard',{admin:true,count1});
+  })
+}); 
+
+router.get('/view-edit-user', function(req,res, next) {
+  productHelpers.listUser().then((users)=>{
+    res.render('admin/view-edit-user',{admin:true,users});
+    
   })
 }); 
 
