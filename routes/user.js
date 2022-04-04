@@ -5,24 +5,24 @@ const productHelpers = require('../helpers/product-helpers');
 const { response } = require('express');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  productHelpers.listProducts().then((products)=>{
-    res.render('user/index',{admin:false,products});
+router.get('/', function (req, res, next) {
+  productHelpers.listProducts().then((products) => {
+    res.render('user/index', { admin: false, products });
   })
-  
+
 });
 
-router.get('/about', function(req, res, next) {
+router.get('/about', function (req, res, next) {
   res.render('user/about');
-}); 
+});
 
-router.get('/contact', function(req, res, next) {
+router.get('/contact', function (req, res, next) {
   res.render('user/contact');
-}); 
+});
 
-router.get('/signup', function(req, res, next) {
+router.get('/signup', function (req, res, next) {
   res.render('user/signup');
-}); 
+});
 
 // router.post('/signup',(req,res)=>{
 //   userHelpers.addUser(req.body).then((response)=>{
@@ -31,13 +31,13 @@ router.get('/signup', function(req, res, next) {
 //   })
 // })
 
-router.post('/signup',(req,res)=>{
-  userHelpers.addUser(req.body,(result)=>{
-      res.render("user/signup",{admin:true})
+router.post('/signup', (req, res) => {
+  userHelpers.addUser(req.body, (result) => {
+    res.render("user/signup", { admin: true })
   })
 })
 
-router.post('/userLogin',(req,res)=>{
+router.post('/userLogin', (req, res) => {
   userHelpers.doLogin(req.body)
 })
 
