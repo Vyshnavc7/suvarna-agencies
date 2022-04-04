@@ -16,11 +16,27 @@ router.get('/add-product', function(req, res, next) {
   res.render('admin/add-product',{admin:true});
 }); 
 router.get('/view-edit-user', function(req, res, next) {
-  res.render('admin/view-edit-user',{admin:true});
+  userHelpers.listUser().then((users)=>{
+    res.render('admin/view-edit-user',{admin:true,users});
+    
+  })
 }); 
+
+
 router.get('/dashboard', function(req, res, next) {
-  res.render('admin/dashboard',{admin:true});
+  productHelpers.getCategoryCount().then((categorycount)=>{
+    productHelpers.getProductCount().then((productcount)=>{
+      productHelpers.getUserCount().then((usercount)=>{
+        console.log("ss",productcount);
+        res.render('admin/dashboard',{admin:true,productcount,categorycount,usercount});
+      })
+      
+    })
+  })
+ 
 }); 
+
+
 router.get('/all-products', function(req, res, next) {
   // used for list product and calling
   productHelpers.listProducts().then((products)=>{
@@ -68,35 +84,6 @@ router.post('/add-category',(req,res)=>{
       res.render("admin/add-category",{admin:true})
   })
 })
-
-router.get('/dashboard',async(req,res)=>{
-  // let admin=req.session.admin
-  // let sellercount=await adminHelpers.getSellersCount()
-  // let usercount=await adminHelpers.getUserCount()
-  // let bookingcount=await adminHelpers.getBookingsCount()
-  // let vehiclescount=await adminHelpers.getVehiclesCount()
-  let productcount=await productHelpers.getProductCount()
-  let categorycount=await productHelpers.getCategoryCount()
-  // res.render('admin/dashboard',{admin,sellercount,usercount,bookingcount,vehiclescount})
-  res.render('admin/dashboard',{productcount,categorycount})
-}),
-
-router.get('/dashboard', function(req,res, next) {
-  // used for list product and calling
-  productHelpers.getCategoryCount().then((count1)=>{
-    res.render('admin/dashboard',{admin:true,count1});
-  })
-}); 
-
-router.get('/view-edit-user', function(req,res, next) {
-  productHelpers.listUser().then((users)=>{
-    res.render('admin/view-edit-user',{admin:true,users});
-    
-  })
-}); 
-
-
-
 
 
 module.exports = router;

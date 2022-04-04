@@ -43,29 +43,31 @@ module.exports={
     },
     // to get the count of products in product
     getProductCount:()=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.PRODUCT_COLLECTION).count().then((count)=>{
-                resolve(count)
-                console.log(count);
-            })
+        return new Promise(async (resolve,reject)=>{
+            let productcount= await db.get().collection(collection.PRODUCT_COLLECTION).count()
+                resolve(productcount)
+                console.log(productcount);
+            
         })
     },
     // to get the count of categories in category
     getCategoryCount:()=>{
         return new Promise(async(resolve,reject)=>{
-            let count1=await db.get().collection(collection.CATEGORY_COLLECTION).count()
-                resolve(count1)
-                console.log(count1);
+            let categorycount=await db.get().collection(collection.CATEGORY_COLLECTION).count()
+                resolve(categorycount)
+                console.log(categorycount);
             
         })
     },
 
-    listUser:()=>{
+    // to get the count of user in category
+    getUserCount:()=>{
         return new Promise(async(resolve,reject)=>{
-            let users=await db.get().collection(collection.USER_COLLECTION).find().toArray()
-            resolve(users);
-            console.log(users);
+            let usercount=await db.get().collection(collection.USER_COLLECTION).count()
+                resolve(usercount)
+                console.log(usercount);
+            
         })
-        
     },
+    
 }

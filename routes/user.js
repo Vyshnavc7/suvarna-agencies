@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const userHelpers = require('../helpers/user-helpers');
-
+const productHelpers = require('../helpers/product-helpers');
 const { response } = require('express');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('user/index');
+  productHelpers.listProducts().then((products)=>{
+    res.render('user/index',{admin:false,products});
+  })
+  
 });
 
 router.get('/about', function(req, res, next) {
@@ -37,6 +40,7 @@ router.post('/signup',(req,res)=>{
 router.post('/userLogin',(req,res)=>{
   userHelpers.doLogin(req.body)
 })
+
 
 
 module.exports = router;

@@ -39,6 +39,23 @@ module.exports={
                 }
             }
          })
-     }
+     },
+     listUser:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let use=await db.get().collection(collection.USER_COLLECTION).find().toArray()
+            resolve(use);
+            console.log(use);
+        })
+        
+    },
+
+    listProducts:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let products=await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+            resolve(products)
+            console.log(products);
+        })
+        
+    },
     
 }
