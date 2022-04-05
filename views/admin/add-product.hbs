@@ -15,12 +15,12 @@ enctype is for file sharing to server --}}
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Category
                 </button>
-                {{#each category}}
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                {{#each categorys}}
                     <button class="dropdown-item" type="button">{{this.name}}</button>
                     
-                </div>
                 {{/each}}
+                </div>
             </div>
 
             <div class="form-group mt-2">

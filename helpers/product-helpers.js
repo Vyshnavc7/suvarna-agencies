@@ -1,6 +1,7 @@
 var db=require('../config/connection')
 var collection=require('../config/collections');
 const async = require('hbs/lib/async');
+const { promise } = require('bcrypt/promises');
 module.exports={
     addProduct:(product,callback)=>{
        
@@ -36,10 +37,20 @@ module.exports={
      viewCategory:()=>{
         return new Promise(async(resolve,reject)=>{
             let categorys=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()  
+    
             resolve(categorys)
-            console.log(categorys);
         })
         
+    },
+    getCategory:()=>{
+        return new promise(async(resolve,reject)=>{
+            let i=0
+            // for (i in cat){
+            //     let cat[i]= await db.get().collection(collection.CATEGORY_COLLECTION.find().toArray)
+            // }
+            
+        })
+
     },
     // to get the count of products in product
     getProductCount:()=>{
@@ -69,5 +80,5 @@ module.exports={
             
         })
     },
-    
+
 }

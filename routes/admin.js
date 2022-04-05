@@ -1,4 +1,5 @@
 var express = require('express');
+const async = require('hbs/lib/async');
 const productHelpers = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers');
 var router = express.Router();
@@ -22,9 +23,9 @@ router.get('/add-category', function (req, res, next) {
   res.render('admin/add-category', { admin: true });
 });
 router.get('/add-product', function (req, res, next) {
-  productHelpers.viewCategory().then((category) => {
-    console.log("List of category ", category);
-    res.render('admin/add-product', { admin: true, category });
+  productHelpers.viewCategory().then((categorys) => {
+    console.log("List of category ", categorys);
+    res.render('admin/add-product', { admin: true, categorys });
   })
 
 });
@@ -93,7 +94,8 @@ router.post('/add-product', (req, res) => {
 
 // calling add catergory from product helpers to insert data
 router.post('/add-category', (req, res) => {
-  productHelpers.addCategory(req.body, (result) => {
+  productHelpers.addCategory(req.body,  (result) => {
+   
     res.render("admin/add-category", { admin: true })
   })
 })
