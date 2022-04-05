@@ -42,16 +42,7 @@ module.exports={
         })
         
     },
-    getCategory:()=>{
-        return new promise(async(resolve,reject)=>{
-            let i=0
-            // for (i in cat){
-            //     let cat[i]= await db.get().collection(collection.CATEGORY_COLLECTION.find().toArray)
-            // }
-            
-        })
-
-    },
+    
     // to get the count of products in product
     getProductCount:()=>{
         return new Promise(async (resolve,reject)=>{

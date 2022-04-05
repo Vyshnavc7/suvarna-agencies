@@ -10,17 +10,23 @@ enctype is for file sharing to server --}}
                 <input type="text" class="form-control" id="email" placeholder="Enter Name of the product" name="name">
             </div>
             <div class="dropdown">
-                
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                {{!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Category
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                {{#each categorys}}
-                    <button class="dropdown-item" type="button">{{this.name}}</button>
-                    
-                {{/each}}
-                </div>
+                </button> --}}
+                
+                <select class="form-select btn btn-primary text-left" aria-label="Default select example">
+                    {{#each categorys}}
+                    <option value="1">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                
+                {{!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    {{#each categorys}}
+                    <option value="1">{{this.name}}</option>
+                    {{/each}}
+                </div> --}}
             </div>
 
             <div class="form-group mt-2">
