@@ -1,0 +1,53 @@
+{{!-- it is for add product form
+enctype is for file sharing to server --}}
+<section>
+    <div class="container mt-3">
+        <a class="pull-right btn btn-primary " href="/admin/all-products">Back</a>
+        <h2>Edit product</h2>
+        <form action="/admin/edit-product/{{product._id}}" enctype="multipart/form-data" method="post">
+            <div class="form-group mt-3">
+                <label for="email">Product Name:</label>
+                <input type="text" class="form-control" id="email" name="name" value="{{product.name}}">
+            </div>
+            <div class="dropdown btn btn-primary" style="border-color: #90deea;
+    background-color: #90deea;">
+
+                {{!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Category
+                </button> --}}
+
+                <select class="form-select  text-left" style="border-color: #90deea;
+    background-color: #90deea;" aria-label="Default select example">
+                    {{#each categorys}}
+                    <option value="1">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                {{!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    {{#each categorys}}
+                    <option value="1">{{this.name}}</option>
+                    {{/each}}
+                </div> --}}
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="pwd">Price:</label>
+                <input type="text" class="form-control" id="price"  name="price" value="{{product.price}}">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Details:</label>
+                <input type="text" class="form-control" id="det"  name="det" value="{{product.det}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlFile1">IMAGE</label>
+                <img src="/product-images/{{product._id}}.jpg" alt="" style="width: 100px; height:auto;">
+                <input type="file" name="image" class="form-control-file mt-1" id="exampleFormControlFile1">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Change</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+{{!-- while sharing file 'enctype' is used everywhere --}}
+
+<section>
+    <div class="container">
+        <form class="justify-content-center" action="/admin/add-category" method="post">
+            <div class="form-group">
+
+                <label class="mt-2" for="exampleInputEmail1">New Category Name</label>
+                <input type="text" name="name" class="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Name" value="{{category.name}}">
+                
+            </div>
+            <button type="submit" class="btn btn-success">Change</button>
+        </form>
+    </div>
+</section>

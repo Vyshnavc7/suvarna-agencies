@@ -105,11 +105,51 @@ router.post('/add-category', (req, res) => {
 
 router.get('/delete-product/:id',(req,res)=>{
   let productID = req.params.id
-  console.log(productID);
+  // console.log(productID);
   productHelpers.deleteProduct(productID).then((response)=>{
     res.redirect('/admin/all-products/')
   })
 })
 
+router.get('/edit-product/:id',async (req,res)=>{
+  let product=await productHelpers.getProductDetails(req.params.id)
+  console.log(product);
+  res.render('admin/edit-product',{admin:true ,product})
+})
 
+router.post('/edit-product/:id',(req,res)=>{
+  console.log(req.params.id)
+  let id1 = req.params.id
+  productHelpers.updateProduct(req.params.id,req.body).then(()=>{
+    res.redirect('/admin/all-products')
+    if(req.files.image){
+      let image=req.files.image
+      
+      image.mv('./public/product-images/' + id1 + '.jpg')
+    }
+  })
+})
+
+
+router.get('/delete-category/:id',(req,res)=>{
+  let categoryID = req.params.id
+  // console.log(productID);
+  productHelpers.deleteCategory(categoryID).then((response)=>{
+    res.redirect('/admin/view-category/')
+  })
+})
+
+router.get('/edit-category/:id',async (req,res)=>{
+  let category=await productHelpers.getCategoryDetails(req.params.id)
+  console.log(category);
+  res.render('admin/edit-category',{admin:true ,category})
+})
+
+router.post('/edit-category/:id',(req,res)=>{
+  
+  productHelpers.updateCategory(req.params.id,req.body).then(()=>{
+    res.redirect('/admin/view-category')
+    
+  })
+})
 module.exports = router;
