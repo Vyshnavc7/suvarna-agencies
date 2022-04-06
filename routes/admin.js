@@ -1,8 +1,10 @@
+const { response } = require('express');
 var express = require('express');
 const async = require('hbs/lib/async');
 const productHelpers = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers');
 var router = express.Router();
+
 // to call addproduct function, then require this module here
 
 /* GET users listing. */
@@ -98,6 +100,14 @@ router.post('/add-category', (req, res) => {
   productHelpers.addCategory(req.body,  (result) => {
    
     res.render("admin/add-category", { admin: true })
+  })
+})
+
+router.get('/delete-product/:id',(req,res)=>{
+  let productID = req.params.id
+  console.log(productID);
+  productHelpers.deleteProduct(productID).then((response)=>{
+    res.redirect('/admin/all-products/')
   })
 })
 

@@ -1,7 +1,8 @@
 var db=require('../config/connection')
 var collection=require('../config/collections');
 const async = require('hbs/lib/async');
-const { promise } = require('bcrypt/promises');
+const { promise, reject } = require('bcrypt/promises');
+var objectID=require('mongodb').ObjectId
 module.exports={
     addProduct:(product,callback)=>{
        
@@ -71,5 +72,13 @@ module.exports={
             
         })
     },
+
+    deleteProduct:(productID)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).remove({_id:objectID(productID)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    }
 
 }
