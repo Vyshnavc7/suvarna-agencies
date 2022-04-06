@@ -9,19 +9,21 @@ enctype is for file sharing to server --}}
                 <label for="email">Product Name:</label>
                 <input type="text" class="form-control" id="email" placeholder="Enter Name of the product" name="name">
             </div>
-            <div class="dropdown">
+            <div class="dropdown btn btn-primary" style="border-color: #90deea;
+    background-color: #90deea;">
 
-                {{!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                {{!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Category
                 </button> --}}
-                
-                <select class="form-select btn btn-primary text-left" aria-label="Default select example">
+
+                <select class="form-select  text-left" style="border-color: #90deea;
+    background-color: #90deea;" aria-label="Default select example">
                     {{#each categorys}}
                     <option value="1">{{this.name}}</option>
                     {{/each}}
                 </select>
-                
+
                 {{!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     {{#each categorys}}
                     <option value="1">{{this.name}}</option>

@@ -94,6 +94,7 @@ router.post('/add-product', (req, res) => {
 
 // calling add catergory from product helpers to insert data
 router.post('/add-category', (req, res) => {
+  
   productHelpers.addCategory(req.body,  (result) => {
    
     res.render("admin/add-category", { admin: true })
