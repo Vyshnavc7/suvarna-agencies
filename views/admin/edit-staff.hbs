@@ -1,0 +1,36 @@
+{{!-- it is for add product form
+enctype is for file sharing to server --}}
+<section>
+    <div class="container mt-3">
+        <a class="pull-right btn btn-primary " href="/admin/view-staff">Back</a>
+        <h2>Edit Staff</h2>
+        <form action="/admin/edit-staff/{{staff._id}}" enctype="multipart/form-data" method="post">
+            <div class="form-group mt-3">
+                <label for="email">Staff Name:</label>
+                <input type="text" class="form-control" id="email" name="name" value="{{staff.name}}">
+            </div>
+            <div class="form-group mt-2">
+                <label for="pwd">Phone Number:</label>
+                <input type="text" class="form-control" id="phone"  name="phone" value="{{staff.phone}}">
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="pwd">Age:</label>
+                <input type="text" class="form-control" id="age"  name="age" value="{{staff.age}}">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Place:</label>
+                <input type="text" class="form-control" id="staff"  name="staff" value="{{staff.place}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlFile1">IMAGE</label>
+                <img src="/product-images/{{staff._id}}.jpg" alt="" style="width: 100px; height:auto;">
+                <input type="file" name="image" class="form-control-file mt-1" id="exampleFormControlFile1">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Change</button>
+        </form>
+    </div>
+</section>

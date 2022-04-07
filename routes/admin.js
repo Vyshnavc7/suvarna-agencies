@@ -196,7 +196,7 @@ router.post('/add-staff', (req, res) => {
 
 
 });
-
+// for staff view
 router.get('/view-staff', function (req, res, next) {
   // used for list product and calling
   userHelpers.viewStaff().then((staff) => {
@@ -204,6 +204,30 @@ router.get('/view-staff', function (req, res, next) {
   })
 
 });
+
+// for staff edit and delete
+
+router.get('/delete-staff/:id',(req,res)=>{
+  let staffID = req.params.id
+  // console.log(productID);
+  userHelpers.deleteStaff(staffID).then((response)=>{
+    res.redirect('/admin/view-staff/')
+  })
+})
+
+router.get('/edit-category/:id',async (req,res)=>{
+  let category=await productHelpers.getCategoryDetails(req.params.id)
+  console.log(category);
+  res.render('admin/edit-category',{admin:true ,category})
+})
+
+router.post('/edit-category/:id',(req,res)=>{
+  
+  productHelpers.updateCategory(req.params.id,req.body).then(()=>{
+    res.redirect('/admin/view-category')
+    
+  })
+})
 
 
 

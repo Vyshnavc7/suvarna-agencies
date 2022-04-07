@@ -86,4 +86,12 @@ module.exports={
         })
         
     },
+
+    deleteStaff:(staffID)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.STAFF_COLLECTION).remove({_id:objectID(staffID)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
 }
