@@ -157,7 +157,7 @@ router.post('/edit-category/:id',(req,res)=>{
   })
 })
 
-
+// for user
 router.get('/delete-user/:id',(req,res)=>{
   let userID = req.params.id
   // console.log(productID);
@@ -165,6 +165,45 @@ router.get('/delete-user/:id',(req,res)=>{
     res.redirect('/admin/view-edit-user/')
   })
 })
+
+// for staff add
+router.get('/add-staff', function (req, res, next) {
+    res.render('admin/add-staff', { admin: true });
+});
+
+router.post('/add-staff', (req, res) => {
+
+  // listing form data in server
+  // console.log(req.body);
+  // console.log(req.files.image);
+
+  // calling addstaff function from userhelpers to insert to database
+  userHelpers.addStaff(req.body, (id) => {
+    let image = req.files.image
+    let name = req.files.image.name
+    let id1 = req.body._id
+
+    image.mv('./public/staff-images/' + id1 + '.jpg', (err, done) => {
+      if (!err) {
+        console.log('Image inserted');
+        console.log('image id in folder is :' + id1);
+        res.render("admin/add-staff", { admin: true })
+      } else {
+        console.log(err);
+      }
+    })
+  })
+
+
+});
+
+router.get('/view-staff', function (req, res, next) {
+  // used for list product and calling
+  userHelpers.viewStaff().then((staff) => {
+    res.render('admin/view-staff', { admin: true, staff });
+  })
+
+});
 
 
 

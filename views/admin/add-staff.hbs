@@ -1,0 +1,36 @@
+{{!-- it is for add product form
+enctype is for file sharing to server --}}
+<section>
+    <div class="container mt-3">
+        <a class="pull-right btn btn-primary " href="/admin/view-staff">Back</a>
+        <h2>Add Staff</h2>
+        <form action="/admin/add-staff" enctype="multipart/form-data" method="post">
+            <div class="form-group mt-3">
+                <label  for="email">Staff Name:</label>
+                <input required type="text" class="form-control" id="name" placeholder="Enter Name of the Staff" name="name" >
+            </div>
+            
+            <div class="form-group mt-2">
+                <label for="pwd">Phone Number:</label>
+                <input required type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone">
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="pwd">Age:</label>
+                <input required type="text" class="form-control" id="age" placeholder="Enter Age" name="age">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Place:</label>
+                <input required type="text" class="form-control" id="place" placeholder="Enter Place" name="place">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlFile1">CHOOSE THE IMAGE</label>
+                <input required type="file" name="image" class="form-control-file mt-1" id="exampleFormControlFile1">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">ADD</button>
+        </form>
+    </div>
+</section>

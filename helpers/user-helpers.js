@@ -66,5 +66,24 @@ module.exports={
             })
         })
     },
+
+
+    addStaff:(staff,callback)=>{
+       
+        // to insert datas into database in mongo
+        // user.pass= bcrypt.hash(user.pass,10)
+            db.get().collection('staff').insertOne(staff).then((data)=>{
+                console.log('Data inserted');
+                callback(data)
+            })
+     },
     
+     viewStaff:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let staff=await db.get().collection(collection.STAFF_COLLECTION).find().toArray()
+            resolve(staff);
+            console.log(staff);
+        })
+        
+    },
 }

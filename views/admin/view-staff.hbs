@@ -1,0 +1,36 @@
+<section>
+    <div class="container">
+        <table class="table table-bordered">
+            <div class="row mt-3">
+                <a class="btn btn-success ml-auto m-3" href="/admin/add-staff">Add Staff</a>
+                
+            </div>
+            
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name of Staff</th>
+                    <th scope="col">Phone No </th>
+                    <th scope="col">Age</th>
+                    <th scope="col">place</th>
+                    <th scope="col">Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each staff}}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>{{this.age}}</td>
+                    <td>{{this.place}}</td>
+                    <td><img class="img-thumbnail rounded img-fluid float-center" style="height: 50px; width: 50px;" src="/staff-images/{{this._id}}.jpg"></td>
+                    <td><a href="/admin/edit-staff/{{this._id}}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="/admin/delete-staff/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you Sure want to delete ? {{this.name}}')">Delete</a></td>
+                </tr>
+                {{/each}}
+                
+            </tbody>
+        </table>
+    </div>
+</section>
