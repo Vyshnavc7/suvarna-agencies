@@ -128,7 +128,7 @@ module.exports={
             db.get().collection(collection.CATEGORY_COLLECTION)
             .updateOne({_id:objectID(categoryID)},{
                 $set:{
-                    name:catDetails.name
+                    Name:catDetails.name
                 }
             }).then((response)=>{
                 resolve()

@@ -103,6 +103,9 @@ router.post('/add-category', (req, res) => {
   })
 })
 
+
+
+
 router.get('/delete-product/:id',(req,res)=>{
   let productID = req.params.id
   // console.log(productID);
