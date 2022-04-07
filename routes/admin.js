@@ -12,8 +12,10 @@ router.get('/', function (req, res, next) {
   productHelpers.getCategoryCount().then((categorycount) => {
     productHelpers.getProductCount().then((productcount) => {
       productHelpers.getUserCount().then((usercount) => {
-
-        res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount });
+        productHelpers.getStaffCount().then((staffcount)=>{
+          
+          res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount, staffcount });
+        })
       })
 
     })
@@ -43,8 +45,11 @@ router.get('/dashboard', function (req, res, next) {
   productHelpers.getCategoryCount().then((categorycount) => {
     productHelpers.getProductCount().then((productcount) => {
       productHelpers.getUserCount().then((usercount) => {
+        productHelpers.getStaffCount().then((staffcount)=>{
 
-        res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount });
+          res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount, staffcount });
+        })
+
       })
 
     })

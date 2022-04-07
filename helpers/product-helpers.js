@@ -64,12 +64,21 @@ module.exports={
         })
     },
 
-    // to get the count of user in category
+    // to get the count of user 
     getUserCount:()=>{
         return new Promise(async(resolve,reject)=>{
             let usercount=await db.get().collection(collection.USER_COLLECTION).count()
                 resolve(usercount)
                 console.log(usercount);
+            
+        })
+    },
+    // to get staff count
+    getStaffCount:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let staffcount=await db.get().collection(collection.STAFF_COLLECTION).count()
+                resolve(staffcount)
+                console.log(staffcount);
             
         })
     },
