@@ -5,6 +5,7 @@ const async = require('hbs/lib/async');
 const bcrypt= require('bcrypt');
 const { promise, reject } = require('bcrypt/promises');
 const { parseWithoutProcessing } = require('handlebars');
+var objectID=require('mongodb').ObjectId
 // signing up user
 module.exports={
     // addUser:(user)=>{
@@ -56,6 +57,14 @@ module.exports={
             console.log(products);
         })
         
+    },
+
+    deleteUser:(userID)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.USER_COLLECTION).remove({_id:objectID(userID)}).then((response)=>{
+                resolve(response)
+            })
+        })
     },
     
 }

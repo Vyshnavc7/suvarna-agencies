@@ -16,7 +16,7 @@
                     <th scope="row">1</th>
                     <td>{{this.name}}</td>
                     <td>{{this.email}}</td>
-                   
+                    <td><a href="/admin/delete-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you Sure want to delete ? {{this.name}}')">Delete</a></td>
                 </tr>
                 {{/each}}
                 

@@ -104,7 +104,7 @@ router.post('/add-category', (req, res) => {
 })
 
 
-
+// for product edit delete 
 
 router.get('/delete-product/:id',(req,res)=>{
   let productID = req.params.id
@@ -133,6 +133,7 @@ router.post('/edit-product/:id',(req,res)=>{
   })
 })
 
+// for category edit and delete
 
 router.get('/delete-category/:id',(req,res)=>{
   let categoryID = req.params.id
@@ -155,4 +156,16 @@ router.post('/edit-category/:id',(req,res)=>{
     
   })
 })
+
+
+router.get('/delete-user/:id',(req,res)=>{
+  let userID = req.params.id
+  // console.log(productID);
+  userHelpers.deleteUser(userID).then((response)=>{
+    res.redirect('/admin/view-edit-user/')
+  })
+})
+
+
+
 module.exports = router;

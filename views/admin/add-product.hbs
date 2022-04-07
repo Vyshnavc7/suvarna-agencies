@@ -6,43 +6,30 @@ enctype is for file sharing to server --}}
         <h2>Add product</h2>
         <form action="/admin/add-product" enctype="multipart/form-data" method="post">
             <div class="form-group mt-3">
-                <label for="email">Product Name:</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter Name of the product" name="name">
+                <label  for="email">Product Name:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter Name of the product" name="name" required>
             </div>
-            <div class="dropdown btn btn-primary" style="border-color: #90deea;
-    background-color: #90deea;">
+            <div class="dropdown btn btn-primary" style="border-color: #90deea;background-color: #90deea;">
 
-                {{!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Category
-                </button> --}}
-
-                <select class="form-select  text-left" style="border-color: #90deea;
-    background-color: #90deea;" aria-label="Default select example">
+                <select required class="form-select  text-left" name="category" style="border-color: #90deea;background-color: #90deea;" aria-label="Default select example">
                     {{#each categorys}}
-                    <option value="1">{{this.name}}</option>
+                    <option name="category" value="{{this.name}}">{{this.name}}</option>
                     {{/each}}
                 </select>
-
-                {{!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    {{#each categorys}}
-                    <option value="1">{{this.name}}</option>
-                    {{/each}}
-                </div> --}}
             </div>
 
             <div class="form-group mt-2">
                 <label for="pwd">Price:</label>
-                <input type="text" class="form-control" id="price" placeholder="Enter Price" name="price">
+                <input required type="text" class="form-control" id="price" placeholder="Enter Price" name="price">
             </div>
             <div class="form-group">
                 <label for="pwd">Details:</label>
-                <input type="text" class="form-control" id="det" placeholder="Enter Details" name="det">
+                <input required type="text" class="form-control" id="det" placeholder="Enter Details" name="det">
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlFile1">CHOOSE THE IMAGE</label>
-                <input type="file" name="image" class="form-control-file mt-1" id="exampleFormControlFile1">
+                <input required type="file" name="image" class="form-control-file mt-1" id="exampleFormControlFile1">
             </div>
 
 

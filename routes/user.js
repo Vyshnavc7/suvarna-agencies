@@ -33,13 +33,14 @@ router.get('/signup', function (req, res, next) {
 
 router.post('/signup', (req, res) => {
   userHelpers.addUser(req.body, (result) => {
-    res.render("user/signup", { admin: true })
+      res.render("user/index", { admin: false })
   })
 })
 
 router.post('/userLogin', (req, res) => {
   userHelpers.doLogin(req.body)
 })
+
 
 
 
