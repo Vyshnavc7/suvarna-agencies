@@ -94,4 +94,29 @@ module.exports={
             })
         })
     },
+
+    getStaffDetails:(staffID)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.STAFF_COLLECTION).findOne({_id:objectID(staffID)}).then((staff)=>{
+                resolve(staff)
+            })
+        })
+    },
+
+    updateStaff:(staffID,staffDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.STAFF_COLLECTION)
+            .updateOne({_id:objectID(staffID)},{
+                $set:{
+                    name:staffDetails.name,
+                    phone:staffDetails.phone,
+                    age:staffDetails.age,
+                    place:staffDetails.place
+
+                }
+            }).then((response)=>{
+                resolve()
+            })
+        })
+    },
 }

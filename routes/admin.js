@@ -215,17 +215,23 @@ router.get('/delete-staff/:id',(req,res)=>{
   })
 })
 
-router.get('/edit-category/:id',async (req,res)=>{
-  let category=await productHelpers.getCategoryDetails(req.params.id)
-  console.log(category);
-  res.render('admin/edit-category',{admin:true ,category})
+router.get('/edit-staff/:id',async (req,res)=>{
+  let staff=await userHelpers.getStaffDetails(req.params.id)
+  console.log(staff);
+  res.render('admin/edit-staff',{admin:true ,staff})
 })
 
-router.post('/edit-category/:id',(req,res)=>{
-  
-  productHelpers.updateCategory(req.params.id,req.body).then(()=>{
-    res.redirect('/admin/view-category')
-    
+
+router.post('/edit-staff/:id',(req,res)=>{
+  console.log(req.params.id)
+  let id1 = req.params.id
+  userHelpers.updateStaff(req.params.id,req.body).then(()=>{
+    res.redirect('/admin/view-staff')
+    if(req.files.image){
+      let image=req.files.image
+      
+      image.mv('./public/staff-images/' + id1 + '.jpg')
+    }
   })
 })
 
