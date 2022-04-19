@@ -13,7 +13,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/about', function (req, res, next) {
-  res.render('user/about');
+  userHelpers.viewStaff().then((staff)=>{
+    res.render('user/about',{admin:false,staff});
+  })
 });
 
 

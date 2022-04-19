@@ -37,17 +37,21 @@
 					</div>
 				</div>
 				<h3 class="tittle-w3layouts text-center my-lg-4 my-4">Staffs</h3>
+			
 				<div class="partners-info">
 					<div class="row mt-lg-5 mt-3">
+						{{#each staff}}
 						<div class="col-md-3 team-main-gd">
 							<div class="team-grid text-center">
 								<div class="team-img">
-									<img class="img-fluid rounded" src="images/team.jpg" alt="Staff1 (Raguthaman)">
+									<img class="img-fluid rounded" src="/staff-images/{{this._id}}.jpg" alt="Staff1 (Raguthaman)">
 								</div>
-								<div class="team-info">
-									<h4>Staff 1</h4>
-									<span>Description </span>
-									<ul class="d-flex justify-content-center py-3 social-icons">
+								<div class="team-info m-3">
+									<h4>{{this.name}}</h4>
+									<span>Contact :{{this.phone}} </span>
+									<span>Age :{{this.age}} </span>
+									<span>Place :{{this.place}} </span>
+									{{!-- <ul class="d-flex justify-content-center py-3 social-icons">
 										<li>
 											<a href="#">
 												<i class="fab fa-facebook-f"></i>
@@ -63,94 +67,12 @@
 												<i class="fab fa-google-plus-g"></i>
 											</a>
 										</li>
-									</ul>
+									</ul> --}}
 								</div>
 							</div>
 						</div>
-					 <div class="col-md-3 team-main-gd">
-							<div class="team-grid text-center">
-								<div class="team-img">
-									<img class="img-fluid rounded" src="images/team.jpg" alt="Staff 2(Nived)">
-								</div>
-								<div class="team-info">
-									<h4>Staff 2</h4>
-									<span>Description </span>
-									<ul class="d-flex justify-content-center py-3 social-icons">
-										<li>
-											<a href="#">
-												<i class="fab fa-facebook-f"></i>
-											</a>
-										</li>
-										<li class="mx-3">
-											<a href="#">
-												<i class="fab fa-twitter"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fab fa-google-plus-g"></i>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 team-main-gd">
-							<div class="team-grid text-center">
-								<div class="team-img">
-									<img class="img-fluid rounded" src="images/team.jpg" alt="Staff3 (Amal)">
-								</div>
-								<div class="team-info">
-									<h4>Staff 3</h4>
-									<span>Description </span>
-									<ul class="d-flex justify-content-center py-3 social-icons">
-										<li>
-											<a href="#">
-												<i class="fab fa-facebook-f"></i>
-											</a>
-										</li>
-										<li class="mx-3">
-											<a href="#">
-												<i class="fab fa-twitter"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fab fa-google-plus-g"></i>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 team-main-gd">
-							<div class="team-grid text-center">
-								<div class="team-img">
-									<img class="img-fluid rounded" src="images/team.jpg" alt="Staff4 ()">
-								</div>
-								<div class="team-info">
-									<h4>Staff 4</h4>
-									<span>Description </span>
-									<ul class="d-flex justify-content-center py-3 social-icons">
-										<li>
-											<a href="#">
-												<i class="fab fa-facebook-f"></i>
-											</a>
-										</li>
-										<li class="mx-3">
-											<a href="#">
-												<i class="fab fa-twitter"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fab fa-google-plus-g"></i>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
+						{{/each}}
+					 
 					</div>
 				</div>
 				<hr>

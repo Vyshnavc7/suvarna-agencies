@@ -49,6 +49,14 @@ module.exports={
         })
         
     },
+    deleteUser:(userID)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.USER_COLLECTION).remove({_id:objectID(userID)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+
 
     listProducts:()=>{
         return new Promise(async(resolve,reject)=>{
@@ -57,14 +65,6 @@ module.exports={
             console.log(products);
         })
         
-    },
-
-    deleteUser:(userID)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.USER_COLLECTION).remove({_id:objectID(userID)}).then((response)=>{
-                resolve(response)
-            })
-        })
     },
 
 
@@ -78,7 +78,7 @@ module.exports={
             })
      },
     
-     viewStaff:()=>{
+    viewStaff:()=>{
         return new Promise(async(resolve,reject)=>{
             let staff=await db.get().collection(collection.STAFF_COLLECTION).find().toArray()
             resolve(staff);
