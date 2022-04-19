@@ -20,7 +20,7 @@ module.exports={
     //     })
        
     //  }, 
-     addUser:(user,callback)=>{
+    addUser:(user,callback)=>{
        
         // to insert datas into database in mongo
         // user.pass= bcrypt.hash(user.pass,10)
@@ -119,4 +119,13 @@ module.exports={
             })
         })
     },
+
+    
+
+    contactSub:(contact,callback)=>{
+        db.get().collection('user').insertOne(contact).then((data)=>{
+            console.log('Contact Inserted');
+            callback(data)
+        })
+    }
 }

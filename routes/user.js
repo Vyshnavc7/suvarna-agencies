@@ -16,9 +16,9 @@ router.get('/about', function (req, res, next) {
   res.render('user/about');
 });
 
-router.get('/contact', function (req, res, next) {
-  res.render('user/contact');
-});
+
+
+
 
 router.get('/signup', function (req, res, next) {
   res.render('user/signup');
@@ -30,6 +30,19 @@ router.get('/signup', function (req, res, next) {
 //       console.log(response);
 //   })
 // })
+
+
+router.get('/contact', function (req, res, next) {
+  res.render('user/contact', { admin: false });
+});
+
+router.post('/contact', function (req, res, next) {
+
+  userHelpers.contactSub(req.body,(result)=>{
+    res.render('/contact',{admin:false});
+  })
+});
+
 
 router.post('/signup', (req, res) => {
   userHelpers.addUser(req.body, (result) => {
