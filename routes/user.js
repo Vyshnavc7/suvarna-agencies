@@ -18,7 +18,10 @@ router.get('/', function (req, res, next) {
 
 router.get('/about', function (req, res, next) {
   userHelpers.viewStaff().then((staff)=>{
-    res.render('user/about',{admin:false,staff});
+    productHelpers.viewCategory().then((categorys)=>{
+
+      res.render('user/about',{admin:false,staff,categorys});
+    })
   })
 });
 
@@ -36,7 +39,10 @@ router.get('/signup', function (req, res, next) {
 
 
 router.get('/contact', function (req, res, next) {
-  res.render('user/contact', { admin: false });
+  productHelpers.viewCategory().then((categorys)=>{
+
+    res.render('user/contact', { admin: false ,categorys});
+  })
 });
 
 router.post('/contact', function (req, res, next) {
