@@ -7,7 +7,11 @@ const { response } = require('express');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   productHelpers.listProducts().then((products) => {
-    res.render('user/index', { admin: false, products });
+    productHelpers.viewCategory().then((categorys)=>{
+
+      res.render('user/index', { admin: false, products, categorys });
+    
+    })
   })
 
 });
@@ -17,9 +21,6 @@ router.get('/about', function (req, res, next) {
     res.render('user/about',{admin:false,staff});
   })
 });
-
-
-
 
 
 router.get('/signup', function (req, res, next) {

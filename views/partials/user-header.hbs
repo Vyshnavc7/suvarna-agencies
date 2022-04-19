@@ -123,55 +123,22 @@
 								<h3 class="tittle-w3layouts-sub text-center mt-3"> <strong> POWER TOOLS </strong> </h3>
 								<li>
 									<div class="row">
-										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> CUTTER Machines </h5>
-											<ul>
-												<li class="media-mini mt-3">
-													<a href="404.html">Dewalt</a>
-												</li>
-												<li class="">
-													<a href="404.html"> Makitha</a>
-												</li>
-												<li>
-													<a href="404.html">DCA</a>
-												</li>
-												
-											</ul>
-											
-										</div>
-										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> DRILL Machines </h5>
-											<ul>
-												<li class="media-mini mt-3">
-													<a href="404.html">Dewalt</a>
-												</li>
-												<li class="">
-													<a href="404.html"> Makitha</a>
-												</li>
-												<li>
-													<a href="404.html">DCA</a>
-												</li>
-												
-											</ul>
-											
-										</div>
 
+										{{#each categorys}}
 										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> GRINDER Machines </h5>
+											<h5 class="tittle-w3layouts-sub"> {{this.name}} Machines </h5>
+											{{#each ../products}}
 											<ul>
 												<li class="media-mini mt-3">
-													<a href="404.html">Dewalt</a>
-												</li>
-												<li class="">
-													<a href="404.html"> Makitha</a>
-												</li>
-												<li>
-													<a href="404.html">DCA</a>
+													<a href="404.html">{{this.name}}</a>
 												</li>
 												
+												
 											</ul>
-											
+											{{/each}}
 										</div>
+										{{/each}}
+										
 										
 										<!-- <div class="col-md-4 media-list span4 text-left">
 											<h5 class="tittle-w3layouts-sub"> Tittle goes here </h5>
