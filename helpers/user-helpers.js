@@ -128,5 +128,14 @@ module.exports={
             console.log('Contact Inserted');
             callback(data)
         })
-    }
+    },
+
+    viewFeedback:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let contact1=await db.get().collection(collection.FEEDBACK_COLLECTION).find().toArray()
+            resolve(contact1);
+            console.log(contact1);
+        })
+        
+    },
 }

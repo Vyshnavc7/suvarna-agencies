@@ -240,6 +240,15 @@ router.post('/edit-staff/:id',(req,res)=>{
   })
 })
 
+router.get('/feedback', function (req, res, next) {
+  // used for list product and calling
+  userHelpers.viewFeedback().then((contact) => {
+    res.render('admin/feedback', { admin: true, contact });
+    console.log(contact);
+  })
+
+});
+
 
 
 module.exports = router;

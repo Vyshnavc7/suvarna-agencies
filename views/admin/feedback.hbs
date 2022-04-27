@@ -1,0 +1,27 @@
+<section>
+    <div class="container">
+        <table class="table table-bordered mt-4">
+            
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Feedback Message</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {{#each contact}}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.message}}</td>
+                </tr>
+                {{/each}}
+                
+            </tbody>
+        </table>
+    </div>
+</section>
