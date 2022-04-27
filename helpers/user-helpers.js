@@ -123,7 +123,8 @@ module.exports={
     
 
     contactSub:(contact,callback)=>{
-        db.get().collection('user').insertOne(contact).then((data)=>{
+        db.get().collection('contact').insertOne(contact).then((data)=>{
+            console.log('contact is ',contact);
             console.log('Contact Inserted');
             callback(data)
         })

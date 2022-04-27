@@ -7,20 +7,20 @@ const { response } = require('express');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   productHelpers.listProducts().then((products) => {
-    productHelpers.viewCategory().then((categorys)=>{
+    productHelpers.viewCategory().then((categorys) => {
 
       res.render('user/index', { admin: false, products, categorys });
-    
+
     })
   })
 
 });
 
 router.get('/about', function (req, res, next) {
-  userHelpers.viewStaff().then((staff)=>{
-    productHelpers.viewCategory().then((categorys)=>{
+  userHelpers.viewStaff().then((staff) => {
+    productHelpers.viewCategory().then((categorys) => {
 
-      res.render('user/about',{admin:false,staff,categorys});
+      res.render('user/about', { admin: false, staff, categorys });
     })
   })
 });
@@ -39,23 +39,25 @@ router.get('/signup', function (req, res, next) {
 
 
 router.get('/contact', function (req, res, next) {
-  productHelpers.viewCategory().then((categorys)=>{
 
-    res.render('user/contact', { admin: false ,categorys});
-  })
+
+  res.render('user/contact', { admin: false });
+
+
 });
 
 router.post('/contact', function (req, res, next) {
 
-  userHelpers.contactSub(req.body,(result)=>{
-    res.render('/contact',{admin:false});
+  userHelpers.contactSub(req.body, (result) => {
+    res.render('user/contact', { admin: false })
+    
   })
 });
 
 
 router.post('/signup', (req, res) => {
   userHelpers.addUser(req.body, (result) => {
-      res.render("user/index", { admin: false })
+    res.render("user/index", { admin: false })
   })
 })
 
