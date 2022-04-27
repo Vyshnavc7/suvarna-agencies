@@ -12,8 +12,8 @@ router.get('/', function (req, res, next) {
   productHelpers.getCategoryCount().then((categorycount) => {
     productHelpers.getProductCount().then((productcount) => {
       productHelpers.getUserCount().then((usercount) => {
-        productHelpers.getStaffCount().then((staffcount)=>{
-          
+        productHelpers.getStaffCount().then((staffcount) => {
+
           res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount, staffcount });
         })
       })
@@ -45,16 +45,14 @@ router.get('/dashboard', function (req, res, next) {
   productHelpers.getCategoryCount().then((categorycount) => {
     productHelpers.getProductCount().then((productcount) => {
       productHelpers.getUserCount().then((usercount) => {
-        productHelpers.getStaffCount().then((staffcount)=>{
-
-          res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount, staffcount });
+        productHelpers.getStaffCount().then((staffcount) => {
+          productHelpers.getFeedbackCount().then((feedcount) => {
+            res.render('admin/dashboard', { admin: true, productcount, categorycount, usercount, staffcount, feedcount });
+          })
         })
-
       })
-
     })
   })
-
 });
 
 
@@ -101,9 +99,9 @@ router.post('/add-product', (req, res) => {
 
 // calling add catergory from product helpers to insert data
 router.post('/add-category', (req, res) => {
-  
-  productHelpers.addCategory(req.body,  (result) => {
-   
+
+  productHelpers.addCategory(req.body, (result) => {
+
     res.render("admin/add-category", { admin: true })
   })
 })
@@ -111,28 +109,28 @@ router.post('/add-category', (req, res) => {
 
 // for product edit delete 
 
-router.get('/delete-product/:id',(req,res)=>{
+router.get('/delete-product/:id', (req, res) => {
   let productID = req.params.id
   // console.log(productID);
-  productHelpers.deleteProduct(productID).then((response)=>{
+  productHelpers.deleteProduct(productID).then((response) => {
     res.redirect('/admin/all-products/')
   })
 })
 
-router.get('/edit-product/:id',async (req,res)=>{
-  let product=await productHelpers.getProductDetails(req.params.id)
+router.get('/edit-product/:id', async (req, res) => {
+  let product = await productHelpers.getProductDetails(req.params.id)
   console.log(product);
-  res.render('admin/edit-product',{admin:true ,product})
+  res.render('admin/edit-product', { admin: true, product })
 })
 
-router.post('/edit-product/:id',(req,res)=>{
+router.post('/edit-product/:id', (req, res) => {
   console.log(req.params.id)
   let id1 = req.params.id
-  productHelpers.updateProduct(req.params.id,req.body).then(()=>{
+  productHelpers.updateProduct(req.params.id, req.body).then(() => {
     res.redirect('/admin/all-products')
-    if(req.files.image){
-      let image=req.files.image
-      
+    if (req.files.image) {
+      let image = req.files.image
+
       image.mv('./public/product-images/' + id1 + '.jpg')
     }
   })
@@ -140,40 +138,40 @@ router.post('/edit-product/:id',(req,res)=>{
 
 // for category edit and delete
 
-router.get('/delete-category/:id',(req,res)=>{
+router.get('/delete-category/:id', (req, res) => {
   let categoryID = req.params.id
   // console.log(productID);
-  productHelpers.deleteCategory(categoryID).then((response)=>{
+  productHelpers.deleteCategory(categoryID).then((response) => {
     res.redirect('/admin/view-category/')
   })
 })
 
-router.get('/edit-category/:id',async (req,res)=>{
-  let category=await productHelpers.getCategoryDetails(req.params.id)
+router.get('/edit-category/:id', async (req, res) => {
+  let category = await productHelpers.getCategoryDetails(req.params.id)
   console.log(category);
-  res.render('admin/edit-category',{admin:true ,category})
+  res.render('admin/edit-category', { admin: true, category })
 })
 
-router.post('/edit-category/:id',(req,res)=>{
-  
-  productHelpers.updateCategory(req.params.id,req.body).then(()=>{
+router.post('/edit-category/:id', (req, res) => {
+
+  productHelpers.updateCategory(req.params.id, req.body).then(() => {
     res.redirect('/admin/view-category')
-    
+
   })
 })
 
 // for user
-router.get('/delete-user/:id',(req,res)=>{
+router.get('/delete-user/:id', (req, res) => {
   let userID = req.params.id
   // console.log(productID);
-  userHelpers.deleteUser(userID).then((response)=>{
+  userHelpers.deleteUser(userID).then((response) => {
     res.redirect('/admin/view-edit-user/')
   })
 })
 
 // for staff add
 router.get('/add-staff', function (req, res, next) {
-    res.render('admin/add-staff', { admin: true });
+  res.render('admin/add-staff', { admin: true });
 });
 
 router.post('/add-staff', (req, res) => {
@@ -212,34 +210,35 @@ router.get('/view-staff', function (req, res, next) {
 
 // for staff edit and delete
 
-router.get('/delete-staff/:id',(req,res)=>{
+router.get('/delete-staff/:id', (req, res) => {
   let staffID = req.params.id
   // console.log(productID);
-  userHelpers.deleteStaff(staffID).then((response)=>{
+  userHelpers.deleteStaff(staffID).then((response) => {
     res.redirect('/admin/view-staff/')
   })
 })
 
-router.get('/edit-staff/:id',async (req,res)=>{
-  let staff=await userHelpers.getStaffDetails(req.params.id)
+router.get('/edit-staff/:id', async (req, res) => {
+  let staff = await userHelpers.getStaffDetails(req.params.id)
   console.log(staff);
-  res.render('admin/edit-staff',{admin:true ,staff})
+  res.render('admin/edit-staff', { admin: true, staff })
 })
 
 
-router.post('/edit-staff/:id',(req,res)=>{
+router.post('/edit-staff/:id', (req, res) => {
   console.log(req.params.id)
   let id1 = req.params.id
-  userHelpers.updateStaff(req.params.id,req.body).then(()=>{
+  userHelpers.updateStaff(req.params.id, req.body).then(() => {
     res.redirect('/admin/view-staff')
-    if(req.files.image){
-      let image=req.files.image
-      
+    if (req.files.image) {
+      let image = req.files.image
+
       image.mv('./public/staff-images/' + id1 + '.jpg')
     }
   })
 })
 
+// displaying the feedback
 router.get('/feedback', function (req, res, next) {
   // used for list product and calling
   userHelpers.viewFeedback().then((contact) => {

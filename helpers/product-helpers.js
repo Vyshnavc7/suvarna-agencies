@@ -82,6 +82,15 @@ module.exports={
             
         })
     },
+    // for feedback count
+    getFeedbackCount:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let feedcount=await db.get().collection(collection.FEEDBACK_COLLECTION).count()
+                resolve(feedcount)
+                console.log(feedcount);
+            
+        })
+    },
 //  for product edit and delete
     deleteProduct:(productID)=>{
         return new Promise((resolve,reject)=>{
