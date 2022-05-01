@@ -30,13 +30,6 @@ router.get('/signup', function (req, res, next) {
   res.render('user/signup');
 });
 
-// router.post('/signup',(req,res)=>{
-//   userHelpers.addUser(req.body).then((response)=>{
-//       res.render("user/signup")
-//       console.log(response);
-//   })
-// })
-
 
 router.get('/contact', function (req, res, next) {
 
@@ -54,39 +47,60 @@ router.post('/contact', function (req, res, next) {
   })
 });
 
-
+// sign up condition 
 router.post('/signup', (req, res) => {
 
   var db = require('../config/connection')
   var collection = require('../config/collections');
-  var username = req.body.name
-  return new Promise(async(resolve,reject)=>{
-    var username1 = await db.get().collection(collection.USER_COLLECTION).find({},{name:username,_id:0}).toArray
-    resolve(username1)
-    console.log(username1);
-    if (username != username1) {
-      userHelpers.addUser(req.body, (result) => {
-        console.log('User',username1);
-        res.render("user/index", { admin: false ,result})
-      })
-    }else{
+  var email2 = req.body.email
+  return new Promise(async (resolve, reject) => {
+    var email1 = await db.get().collection(collection.USER_COLLECTION).find({ email: email2 }).toArray()
+    console.log(email1);
+    if (email1[0]) {
       console.log('Already exist');
-  
+      res.render("user/signup", { admin: false, products })
+
+    } else {
+      userHelpers.addUser(req.body, (result) => {
+        productHelpers.listProducts().then((products) => {
+          console.log('User', email1);
+          res.render("user/index", { admin: false, result, products })
+        })
+      })
+
     }
-    })
-
-    // userHelpers.addUser(req.body).then((response)=>{
-    //   console.log(response);
-    // })
   })
-  
+
+})
 
 
-  
-
-
-router.post('/userLogin', (req, res) => {
-  userHelpers.doLogin(req.body)
+router.post('/login', (req, res) => {
+  var db = require('../config/connection')
+  var collection = require('../config/collections');
+  let email1=req.body.mail
+  console.log(req.body,'uuuuuuuuuuuuu');
+  return new Promise(async (resolve, reject) => {
+    
+    let loginStatus = false
+    let response = {}
+    var user = await db.get().collection(collection.USER_COLLECTION).find({ email: email1 }).toArray()
+    let pass = req.body.pass
+    console.log(pass,'kkkkkkkkkkkkkkkkkkk');
+    console.log(user,'ppppppppppppppppp');
+    if (user[0]) {
+        if (pass == user[0].pass) {
+          productHelpers.listProducts().then((products) => {
+            console.log('Login', user);
+            res.render("user/index", { admin: false, products })
+          })
+        }else{
+          console.log('Pass no MAtch');
+        }
+    }else{
+      console.log('User Not exist');
+    }
+  })
+  // userHelpers.doLogin(req.body)
 })
 
 

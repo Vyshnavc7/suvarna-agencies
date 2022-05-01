@@ -232,7 +232,6 @@ router.post('/edit-staff/:id', (req, res) => {
     res.redirect('/admin/view-staff')
     if (req.files.image) {
       let image = req.files.image
-
       image.mv('./public/staff-images/' + id1 + '.jpg')
     }
   })

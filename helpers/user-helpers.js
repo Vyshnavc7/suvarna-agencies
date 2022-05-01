@@ -33,18 +33,11 @@ module.exports = {
 
 
     },
-    doLogin: (user) => {
-        return new Promise(async (resolve, reject) => {
-            let loginStatus = false
-            let response = {}
-            let user = await db.get().collection(collection.USER_COLLECTION).findOne({ mail: user.email })
-            if (user) {
-                if (pass == user.pass) {
-                    console.log('login');
-                }
-            }
-        })
+    doLogin: (userData) => {
+        
     },
+
+
     listUser: () => {
         return new Promise(async (resolve, reject) => {
             let use = await db.get().collection(collection.USER_COLLECTION).find().toArray()
