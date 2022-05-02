@@ -209,7 +209,8 @@ router.post('/add-staff', (req, res) => {
     console.log(phone);
     if(staff1[0]){
       console.log('Staff Already exist');
-      res.render("admin/add-staff", { admin: true})
+      let exist = 'Staff Already exist'
+      res.render("admin/add-staff", { admin: true,exist})
     }else{
       userHelpers.addStaff(req.body, (id) => {
         let image = req.files.image
