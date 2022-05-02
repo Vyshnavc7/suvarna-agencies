@@ -1,5 +1,6 @@
 var db = require('../config/connection')
 var collection = require('../config/collections');
+const productHelpers = require('../helpers/product-helpers');
 const async = require('hbs/lib/async');
 // used for encryption of password
 const bcrypt = require('bcrypt');
@@ -34,7 +35,39 @@ module.exports = {
 
     },
     doLogin: (userData) => {
-        
+        // let email1 = req.body.mail
+
+        return new Promise(async (resolve, reject) => {
+
+            let loginStatus = false
+            let response = {}
+
+            var user = await db.get().collection(collection.USER_COLLECTION).find({ email: userData.mail }).toArray()
+            let pass = user[0].pass
+
+            if (user[0]) {
+                if (pass == user[0].pass) {
+                    productHelpers.listProducts().then((products) => {
+
+                        response.user = user
+                        response.status = true
+                        console.log(products);
+                        resolve({ products, response })
+
+                    })
+                } else {
+                    console.log("Pass Does'nt MAtch");
+                    response.status = false
+
+
+                    resolve({ response })
+                }
+            } else {
+                console.log('User Not exist');
+                response.status = false
+                resolve({ response })
+            }
+        })
     },
 
 
@@ -67,8 +100,6 @@ module.exports = {
 
     addStaff: (staff, callback) => {
 
-        // to insert datas into database in mongo
-        // user.pass= bcrypt.hash(user.pass,10)
         db.get().collection('staff').insertOne(staff).then((data) => {
             console.log('Data inserted');
             callback(data)

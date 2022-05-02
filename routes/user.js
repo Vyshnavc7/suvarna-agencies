@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
   productHelpers.listProducts().then((products) => {
     productHelpers.viewCategory().then((categorys) => {
 
-      res.render('user/index', { admin: false, products, categorys });
+      res.render('user/index', { admin: false, products, categorys, response });
 
     })
   })
@@ -75,32 +75,19 @@ router.post('/signup', (req, res) => {
 
 
 router.post('/login', (req, res) => {
-  var db = require('../config/connection')
-  var collection = require('../config/collections');
-  let email1=req.body.mail
-  console.log(req.body,'uuuuuuuuuuuuu');
-  return new Promise(async (resolve, reject) => {
-    
-    let loginStatus = false
-    let response = {}
-    var user = await db.get().collection(collection.USER_COLLECTION).find({ email: email1 }).toArray()
-    let pass = req.body.pass
-    console.log(pass,'kkkkkkkkkkkkkkkkkkk');
-    console.log(user,'ppppppppppppppppp');
-    if (user[0]) {
-        if (pass == user[0].pass) {
-          productHelpers.listProducts().then((products) => {
-            console.log('Login', user);
-            res.render("user/index", { admin: false, products })
-          })
-        }else{
-          console.log('Pass no MAtch');
-        }
-    }else{
-      console.log('User Not exist');
+
+  req.session.loggedIn = true
+  req.session.user = response.user
+
+  userHelpers.doLogin(req.body).then((data) => {
+
+    if (data.response.status) {
+      res.render("user/index", { admin: false, products: data.products, response: data.response.user[0] })
+    } else {
+      res.redirect('/')
     }
+
   })
-  // userHelpers.doLogin(req.body)
 })
 
 
