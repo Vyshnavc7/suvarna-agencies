@@ -1,3 +1,4 @@
+const { reject } = require('bcrypt/promises');
 const { response } = require('express');
 var express = require('express');
 const async = require('hbs/lib/async');
@@ -174,30 +175,64 @@ router.get('/add-staff', function (req, res, next) {
   res.render('admin/add-staff', { admin: true });
 });
 
-router.post('/add-staff', (req, res) => {
+router.post('/signup', (req, res) => {
 
-  // listing form data in server
-  // console.log(req.body);
-  // console.log(req.files.image);
+  var db = require('../config/connection')
+  var collection = require('../config/collections');
+  var email2 = req.body.email
+  return new Promise(async (resolve, reject) => {
+    var email1 = await db.get().collection(collection.USER_COLLECTION).find({ email: email2 }).toArray()
+    console.log(email1);
+    if (email1[0]) {
+      console.log('Already exist');
+      res.render("user/signup", { admin: false, products })
 
-  // calling addstaff function from userhelpers to insert to database
-  userHelpers.addStaff(req.body, (id) => {
-    let image = req.files.image
-    let name = req.files.image.name
-    let id1 = req.body._id
+    } else {
+      userHelpers.addUser(req.body, (result) => {
+        productHelpers.listProducts().then((products) => {
+          console.log('User', email1);
+          res.render("user/index", { admin: false, result, products })
+        })
+      })
 
-    image.mv('./public/staff-images/' + id1 + '.jpg', (err, done) => {
-      if (!err) {
-        console.log('Image inserted');
-        console.log('image id in folder is :' + id1);
-        res.render("admin/add-staff", { admin: true })
-      } else {
-        console.log(err);
-      }
-    })
+    }
   })
 
+})
 
+router.post('/add-staff', (req, res) => {
+  var db = require('../config/connection')
+  var collection = require('../config/collections');
+  var phone=req.body.phone
+  return new Promise (async (resolve,reject)=>{
+    var staff1 = await db.get().collection(collection.STAFF_COLLECTION).find({ phone: phone }).toArray()
+    console.log(phone);
+    if(staff1[0]){
+      console.log('Staff Already exist');
+      res.render("admin/add-staff", { admin: true})
+    }else{
+      userHelpers.addStaff(req.body, (id) => {
+        let image = req.files.image
+        let name = req.files.image.name
+        let id1 = req.body._id
+        req.session.status = true
+        req.session.staff1 = response.staff1
+        image.mv('./public/staff-images/' + id1 + '.jpg', (err, done) => {
+          if (!err) {
+            console.log('Image inserted');
+            console.log('image id in folder is :' + id1);
+            res.render("admin/add-staff", { admin: true })
+          } else {
+            console.log(err);
+          }
+        })
+        userHelpers.viewStaff().then((staff)=>{
+          res.render("admin/view-staff", { admin: true, staff})
+        })
+      })
+    }
+  })
+  
 });
 // for staff view
 router.get('/view-staff', function (req, res, next) {

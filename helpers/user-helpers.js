@@ -6,6 +6,7 @@ const async = require('hbs/lib/async');
 const bcrypt = require('bcrypt');
 const { promise, reject } = require('bcrypt/promises');
 const { parseWithoutProcessing } = require('handlebars');
+const res = require('express/lib/response');
 var objectID = require('mongodb').ObjectId
 // signing up user
 module.exports = {
@@ -58,8 +59,6 @@ module.exports = {
                 } else {
                     console.log("Pass Does'nt MAtch");
                     response.status = false
-
-
                     resolve({ response })
                 }
             } else {
@@ -70,6 +69,14 @@ module.exports = {
         })
     },
 
+    addStaff: (staff,callback) => {
+
+        db.get().collection('staff').insertOne(staff).then((data) => {
+            console.log('Staff inserted');
+            callback(data)
+
+        })
+    },
 
     listUser: () => {
         return new Promise(async (resolve, reject) => {
@@ -98,13 +105,7 @@ module.exports = {
     },
 
 
-    addStaff: (staff, callback) => {
 
-        db.get().collection('staff').insertOne(staff).then((data) => {
-            console.log('Data inserted');
-            callback(data)
-        })
-    },
 
     viewStaff: () => {
         return new Promise(async (resolve, reject) => {
