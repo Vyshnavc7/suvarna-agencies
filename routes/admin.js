@@ -73,11 +73,6 @@ router.get('/view-category', function (req, res, next) {
 
 // adding and calling addproduct function in database
 router.post('/add-product', (req, res) => {
-
-  // listing form data in server
-  // console.log(req.body);
-  // console.log(req.files.image);
-
   // calling addproduct function from producthelpers to insert to database
   productHelpers.addProduct(req.body, (id) => {
     let image = req.files.image
@@ -174,31 +169,6 @@ router.get('/delete-user/:id', (req, res) => {
 router.get('/add-staff', function (req, res, next) {
   res.render('admin/add-staff', { admin: true });
 });
-
-router.post('/signup', (req, res) => {
-
-  var db = require('../config/connection')
-  var collection = require('../config/collections');
-  var email2 = req.body.email
-  return new Promise(async (resolve, reject) => {
-    var email1 = await db.get().collection(collection.USER_COLLECTION).find({ email: email2 }).toArray()
-    console.log(email1);
-    if (email1[0]) {
-      console.log('Already exist');
-      res.render("user/signup", { admin: false, products })
-
-    } else {
-      userHelpers.addUser(req.body, (result) => {
-        productHelpers.listProducts().then((products) => {
-          console.log('User', email1);
-          res.render("user/index", { admin: false, result, products })
-        })
-      })
-
-    }
-  })
-
-})
 
 router.post('/add-staff', (req, res) => {
   var db = require('../config/connection')

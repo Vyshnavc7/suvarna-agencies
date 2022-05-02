@@ -10,34 +10,18 @@ const res = require('express/lib/response');
 var objectID = require('mongodb').ObjectId
 // signing up user
 module.exports = {
-    // addUser:(user)=>{
-    //     return new promise(async(resolve,reject)=>{
-    //         user.password=await bcrypt.hash(user.password,10)
-    //         db.get().collection(collection.USER_COLLECTION).insertOne(user).then((data)=>{
-    //             console.log('Data inserted');
-    //             console.log(data);
-    //             resolve(data)
-
-    //         })
-    //     })
-
-    //  }, 
+    
     addUser: (user, callback) => {
-
         // to insert datas into database in mongo
         // user.pass= bcrypt.hash(user.pass,10)
-
         db.get().collection('user').insertOne(user).then((data) => {
             console.log('User inserted');
             callback(data)
             resolve(data.ops[0])
         })
-
-
     },
     doLogin: (userData) => {
         // let email1 = req.body.mail
-
         return new Promise(async (resolve, reject) => {
 
             let loginStatus = false
@@ -69,14 +53,7 @@ module.exports = {
         })
     },
 
-    addStaff: (staff,callback) => {
-
-        db.get().collection('staff').insertOne(staff).then((data) => {
-            console.log('Staff inserted');
-            callback(data)
-
-        })
-    },
+    
 
     listUser: () => {
         return new Promise(async (resolve, reject) => {
@@ -105,7 +82,14 @@ module.exports = {
     },
 
 
+    addStaff: (staff,callback) => {
 
+        db.get().collection('staff').insertOne(staff).then((data) => {
+            console.log('Staff inserted');
+            callback(data)
+
+        })
+    },
 
     viewStaff: () => {
         return new Promise(async (resolve, reject) => {

@@ -8,9 +8,7 @@ const { response } = require('express');
 router.get('/', function (req, res, next) {
   productHelpers.listProducts().then((products) => {
     productHelpers.viewCategory().then((categorys) => {
-
       res.render('user/index', { admin: false, products, categorys, response });
-
     })
   })
 
@@ -32,24 +30,18 @@ router.get('/signup', function (req, res, next) {
 
 
 router.get('/contact', function (req, res, next) {
-
-
   res.render('user/contact', { admin: false });
-
-
 });
 
-router.post('/contact', function (req, res, next) {
 
+router.post('/contact', function (req, res, next) {
   userHelpers.contactSub(req.body, (result) => {
     res.render('user/contact', { admin: false })
-
   })
 });
 
 // sign up condition 
 router.post('/signup', (req, res) => {
-
   var db = require('../config/connection')
   var collection = require('../config/collections');
   var email2 = req.body.email
@@ -73,24 +65,18 @@ router.post('/signup', (req, res) => {
 
 })
 
-
+// login condition
 router.post('/login', (req, res) => {
-
   req.session.loggedIn = true
   req.session.user = response.user
-
   userHelpers.doLogin(req.body).then((data) => {
-
     if (data.response.status) {
       res.render("user/index", { admin: false, products: data.products, response: data.response.user[0] })
     } else {
       res.redirect('/')
     }
-
   })
 })
-
-
 
 
 module.exports = router;
